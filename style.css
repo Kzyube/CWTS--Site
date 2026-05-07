@@ -1,0 +1,161 @@
+/* --- Ultra-Premium Design System --- */
+:root {
+    --bg-deep: #03060C;
+    --card-bg: rgba(10, 15, 25, 0.7);
+    --gold: #D4AF37; /* Muted, elegant gold */
+    --gold-glow: rgba(212, 175, 55, 0.15);
+    --text-main: #F3F4F6;
+    --text-muted: #8E9BAE;
+    --border-light: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Cinematic Film Grain Overlay */
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 9999; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Typography */
+h1, h2, .phase-number { font-family: 'Cinzel', serif; }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; position: relative; padding: 0 5vw;
+}
+
+.monumental-text {
+    font-size: clamp(6rem, 15vw, 16rem);
+    line-height: 0.85; font-weight: 700;
+    letter-spacing: -0.02em; color: var(--text-main);
+    text-transform: uppercase; margin-left: -0.5vw;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0.2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.hero-meta {
+    margin-top: 4rem; display: flex; justify-content: space-between;
+    align-items: flex-end; border-top: 1px solid var(--border-light);
+    padding-top: 2rem;
+}
+
+.mission-statement {
+    max-width: 400px; font-size: 1.1rem; color: var(--text-muted);
+    font-weight: 200; line-height: 1.6;
+}
+
+.premium-countdown { text-align: right; }
+.label { font-size: 0.75rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 0.5rem; display: block; }
+.time-display { font-size: 2.5rem; font-weight: 200; font-variant-numeric: tabular-nums; }
+
+.scroll-down-wrapper {
+    position: absolute; bottom: 0; left: 5vw; height: 100px; width: 1px;
+    background: var(--border-light); overflow: hidden;
+}
+.scroll-line {
+    width: 100%; height: 50%; background: var(--gold);
+    animation: scrollDrop 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+@keyframes scrollDrop { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+
+/* --- STICKY STACKING TIMELINE --- */
+.stacking-timeline {
+    padding: 10vh 5vw; position: relative;
+}
+
+.cards-container {
+    display: flex; flex-direction: column; gap: 2rem; padding-bottom: 20vh;
+}
+
+/* The Magic Sticky Logic */
+.timeline-card {
+    position: sticky; top: 10vh; height: 80vh;
+    transform-origin: center top; transition: filter 0.5s ease;
+}
+
+/* Stagger the tops slightly so they look like a deck of cards */
+#card-1 { top: 10vh; z-index: 1; }
+#card-2 { top: 13vh; z-index: 2; }
+#card-3 { top: 16vh; z-index: 3; }
+
+.card-inner {
+    width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light); border-radius: 24px;
+    overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    transition: border-color 0.4s ease;
+}
+
+.border-gold { border-color: rgba(212, 175, 55, 0.3); box-shadow: 0 30px 80px var(--gold-glow); }
+
+.content-col {
+    padding: 6rem 4rem; display: flex; flex-direction: column; justify-content: center;
+}
+
+.phase-number { font-size: 5rem; line-height: 1; opacity: 0.1; position: absolute; top: 3rem; left: 3rem; }
+.text-gold { opacity: 0.3; color: var(--gold); }
+
+.card-title { font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 500; position: relative; z-index: 2; }
+.card-desc { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 3rem; font-weight: 200; max-width: 90%; }
+
+/* Buttons */
+.minimal-btn {
+    align-self: flex-start; background: transparent; color: var(--text-main);
+    border: 1px solid var(--border-light); padding: 1rem 2.5rem;
+    border-radius: 100px; font-size: 0.9rem; letter-spacing: 1px;
+    cursor: pointer; transition: all 0.4s ease; text-transform: uppercase;
+}
+.minimal-btn:hover { background: var(--text-main); color: var(--bg-deep); }
+.btn-gold { border-color: var(--gold); color: var(--gold); }
+.btn-gold:hover { background: var(--gold); color: var(--bg-deep); box-shadow: 0 0 20px var(--gold-glow); }
+
+/* Pillars Grid */
+.pillar-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: -1rem; }
+.pillar-item { border-left: 2px solid var(--gold); padding-left: 1.5rem; }
+.pillar-item h4 { font-size: 1.1rem; margin-bottom: 0.3rem; letter-spacing: 1px; text-transform: uppercase; }
+.pillar-item p { color: var(--text-muted); font-size: 0.9rem; font-weight: 200; }
+
+/* Image Columns */
+.image-col { background: #0A0F1A; border-left: 1px solid var(--border-light); padding: 2rem; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.bg-shift { background: radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, #0A0F1A 70%); }
+
+.image-placeholder {
+    width: 100%; height: 100%; border-radius: 16px; background: rgba(255,255,255,0.02);
+    display: flex; align-items: center; justify-content: center; text-transform: uppercase;
+    letter-spacing: 2px; font-size: 0.8rem; color: var(--text-muted); position: relative;
+}
+.hover-reveal { cursor: pointer; border: 1px solid transparent; transition: 0.5s; }
+.hover-reveal:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+
+.pillar-graphic {
+    width: 250px; height: 250px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 50px rgba(212,175,55,0.1), 0 0 100px rgba(212,175,55,0.05);
+    animation: slowSpin 20s linear infinite;
+}
+@keyframes slowSpin { 100% { transform: rotate(360deg); } }
+
+.pulse-text { animation: opacityPulse 2s infinite alternate; color: var(--gold); }
+@keyframes opacityPulse { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+
+.minimal-footer { text-align: center; padding: 5vh; border-top: 1px solid var(--border-light); font-size: 0.8rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+
+/* Mobile Adaptations */
+@media screen and (max-width: 1024px) {
+    .card-inner { grid-template-columns: 1fr; grid-template-rows: auto 400px; }
+    .content-col { padding: 4rem 2rem; }
+    .card-title { font-size: 2.5rem; }
+    .timeline-card { height: auto; min-height: 85vh; }
+    .hero-meta { flex-direction: column; align-items: flex-start; gap: 2rem; }
+}
